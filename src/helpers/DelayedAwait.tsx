@@ -3,15 +3,15 @@ import {
   useMemo,
   type ReactElement,
   type ReactNode,
-} from "react";
-import { Await } from "react-router";
+} from 'react';
+import { Await } from 'react-router';
 
 export interface DelayedAwaitProps<T> {
-  resolve: Promise<T>;
-  delay?: number;
-  fallback?: ReactNode;
-  errorElement?: ReactNode;
-  children: ReactNode|((value: T) => ReactNode);
+  readonly resolve: Promise<T>;
+  readonly delay?: number;
+  readonly fallback?: ReactNode;
+  readonly errorElement?: ReactNode;
+  readonly children: ReactNode | ((value: T) => ReactNode);
 }
 
 export function DelayedAwait<T>({
@@ -24,15 +24,23 @@ export function DelayedAwait<T>({
   const delayed = useMemo(() => {
     return Promise.race([
       resolve,
-      new Promise<void>(r => setTimeout(r, delay)),
+      new Promise<void>((r) => setTimeout(r, delay)),
     ]);
   }, [resolve, delay]);
 
   return (
     <Suspense>
-      <Await resolve={delayed} errorElement={errorElement}>
-        <Suspense fallback={fallback}>
-          <Await resolve={resolve} errorElement={errorElement}>
+      <Await
+        resolve={delayed}
+        errorElement={errorElement}
+      >
+        <Suspense
+          fallback={fallback}
+        >
+          <Await
+            resolve={resolve}
+            errorElement={errorElement}
+          >
             {children}
           </Await>
         </Suspense>
