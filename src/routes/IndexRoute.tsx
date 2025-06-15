@@ -1,3 +1,4 @@
+import { YouBackgroundPadding, YouSurface, YouSurfacePadding } from '@premierstacks/material-design-you-react-aria-stack';
 import type { ReactElement } from 'react';
 import { useMeta } from '../lang/seo';
 import { useTrans } from '../lang/trans';
@@ -12,10 +13,16 @@ export function IndexRoute(): ReactElement {
   });
 
   return (
-    <main>
-      <h1>
-        {trans.format('routes.index.h1')}
-      </h1>
-    </main>
+    <YouBackgroundPadding>
+      <YouSurface>
+        <YouSurfacePadding>
+          <main>
+            <h1>
+              {trans.format('routes.index.h1')}
+            </h1>
+          </main>
+        </YouSurfacePadding>
+      </YouSurface>
+    </YouBackgroundPadding>
   );
 }
