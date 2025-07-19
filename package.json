@@ -12,7 +12,7 @@
     "email": "chocholatom1997@gmail.com",
     "url": "https://github.com/premierstacks/browser-webpack-typescript-react-app-template/issues"
   },
-  "license": "Apache-2.0",
+  "license": "CC-BY-ND-4.0",
   "author": {
     "email": "chocholatom1997@gmail.com",
     "name": "Tomáš Chochola",
@@ -47,7 +47,7 @@
     "@opentelemetry/sdk-trace-base": "^2.0.1",
     "@opentelemetry/sdk-trace-web": "^2.0.1",
     "@opentelemetry/semantic-conventions": "^1.33.0",
-    "@premierstacks/material-design-you-react-aria-stack": "github:premierstacks/material-design-you-react-aria-stack#main",
+    "@premierstacks/material-design-expressive-react-aria-stack": "github:premierstacks/material-design-expressive-react-aria-stack#main",
     "@react-aria/i18n": "^3.12.9",
     "@stylexjs/stylex": "^0.13.0",
     "react": "^19.1.0",

@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { setup } from './test';
+import { assertPage } from './test';
 
 test('/not_found', async ({ page }) => {
-  await setup(page, '/not_found');
+  await assertPage(page, '/not_found');
 });
