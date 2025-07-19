@@ -42,7 +42,7 @@ His expertise spans backend systems built on PHP and Laravel, frontend interface
 
 **[GitHub Sponsors -> /sponsors/tomchochola](https://github.com/sponsors/tomchochola)**
 
-Premierstacks is now freely available under the Apache-2.0 license, offering high-quality tools, libraries, and templates to the developer community. While the ecosystem remains open and accessible, its growth, updates, and ongoing maintenance depend on individual support.
+Premierstacks is now freely available under the Creative Commons BY-ND 4.0 license, offering high-quality tools, libraries, and templates to the developer community. While the ecosystem remains open and accessible, its growth, updates, and ongoing maintenance depend on individual support.
 
 By sponsoring Tomáš Chochola on GitHub Sponsors, you directly contribute to the continued development, improvement, and long-term sustainability of Premierstacks. Every contribution supports the creation of reliable, scalable, and future-proof solutions for developers worldwide.
 
