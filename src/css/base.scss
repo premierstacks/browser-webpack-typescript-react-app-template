@@ -3,12 +3,6 @@
   scrollbar-width: none;
 }
 
-a,
-a:visited,
-a:active {
-  color: inherit;
-}
-
 @media screen and (width >= 600px) and (width <= 1199px) {
   :root {
     scrollbar-width: thin;
