@@ -1,4 +1,4 @@
-import './css/styles';
+import './index.scss';
 
 import 'core-js/actual';
 

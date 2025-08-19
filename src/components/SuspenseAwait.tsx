@@ -5,15 +5,15 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
-import { Await } from 'react-router';
-import { UNLIMITED_PROMISE } from '../../helpers/promises';
+import { Await } from 'react-router-dom';
+import { UNLIMITED_PROMISE } from '../helpers/promises';
 
 export interface SuspenseAwaitProps<T> {
-  readonly resolve?: Promise<T> | T;
+  readonly resolve?: Promise<T>;
   readonly delay?: number;
   readonly fallback?: ReactNode;
   readonly errorElement?: ReactNode;
-  readonly children: ReactNode | ((value: T) => ReactNode);
+  readonly children: ((value: T) => ReactNode);
 }
 
 export function SuspenseAwait<T>({

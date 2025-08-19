@@ -6,7 +6,7 @@ export interface MetaArgs {
   description?: string;
 }
 
-export function useMeta({ title, keywords, description }: MetaArgs): void {
+export function useSeo({ title, keywords, description }: MetaArgs): void {
   useEffect(() => {
     if (title !== undefined) {
       document.title = title;

@@ -1,43 +1,27 @@
-import { createBrowserRouter } from 'react-router';
-import { IndexRoute } from './routes/IndexRoute';
-import { NotFoundRoute } from './routes/NotFoundRoute';
-import { ReactAriaProviderRoute } from './routes/ReactAriaProviderRoute';
-import { ScrollRestorationRoute } from './routes/ScrollRestorationRoute';
-import { SentinelRoute } from './routes/SentinelRoute';
+import { createBrowserRouter } from 'react-router-dom';
 import { RouteErrorBoundary } from './boundaries/RouteErrorBoundary';
 import { INDEX_USERS_FETCHER, indexUsersFetcher } from './fetchers/indexUsersFetcher';
+import { IndexRoute } from './routes/IndexRoute';
+import { NotFoundRoute } from './routes/NotFoundRoute';
+import { RootRoute } from './routes/RootRoute';
 
 export function createRouter() {
   return createBrowserRouter([
     {
+      path: INDEX_USERS_FETCHER,
+      loader: indexUsersFetcher,
+    },
+    {
+      element: <RootRoute />,
       errorElement: <RouteErrorBoundary />,
       children: [
         {
-          path: INDEX_USERS_FETCHER,
-          loader: indexUsersFetcher,
+          index: true,
+          element: <IndexRoute />,
         },
         {
-          element: <SentinelRoute />,
-          children: [
-            {
-              element: <ReactAriaProviderRoute />,
-              children: [
-                {
-                  element: <ScrollRestorationRoute />,
-                  children: [
-                    {
-                      index: true,
-                      element: <IndexRoute />,
-                    },
-                    {
-                      path: '*',
-                      element: <NotFoundRoute />,
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          path: '*',
+          element: <NotFoundRoute />,
         },
       ],
     },

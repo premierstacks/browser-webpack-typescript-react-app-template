@@ -1,5 +1,5 @@
 import { useEffect, type ReactElement } from 'react';
-import { useAsyncError } from 'react-router';
+import { useAsyncError } from 'react-router-dom';
 
 interface AsyncErrorBoundaryProps {
   children?: ReactElement;

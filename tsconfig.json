@@ -1,4 +1,4 @@
 {
-  "extends": "@premierstacks/typescript-stack/src/browser_webpack_babel_react_app.json",
+  "extends": "@premierstacks/typescript-stack/src/browser_webpack_babel.json",
   "include": ["./src/**/*", "./tests/**/*"]
 }

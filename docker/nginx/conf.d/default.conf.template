@@ -19,18 +19,18 @@ server {
     try_files $uri $uri/ /index.html;
   }
 
-  location = /index.html {
+  location ~* \.html$ {
     gzip off;
     gzip_static off;
 
     include /etc/nginx/snippets/add_header_security_headers_nonce.conf;
-    expires 0;
-    add_header Cache-Control "private, no-cache, must-revalidate";
+    expires epoch;
+    add_header Cache-Control "private, no-store";
   }
 
   location ~* ^/immutable\. {
     include /etc/nginx/snippets/add_header_security_headers.conf;
-    expires 1y;
+    expires max;
     add_header Cache-Control "public, immutable";
     add_header Vary "Accept-Encoding";
   }

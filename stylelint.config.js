@@ -1,3 +1,4 @@
-import { createStylelintConfigBase } from '@premierstacks/stylelint-stack';
+import { StylelintStack } from '@premierstacks/stylelint-stack';
 
-export default createStylelintConfigBase();
+// eslint-disable-next-line no-restricted-exports
+export default StylelintStack.Presets.base().build();

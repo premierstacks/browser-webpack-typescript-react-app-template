@@ -1,14 +1,4 @@
-import { createEslintConfigBrowserTypescriptReactStrict, createEslintConfigIgnores, createEslintConfigIgnoresRoot } from '@premierstacks/eslint-stack';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import { EslintStack } from '@premierstacks/eslint-stack';
 
-export default defineConfig([
-  globalIgnores(['dist', 'test-results']),
-  createEslintConfigIgnores(),
-  createEslintConfigIgnoresRoot(),
-  createEslintConfigBrowserTypescriptReactStrict(),
-  {
-    rules: {
-      '@stylistic/indent': 'off',
-    }
-  }
-]);
+// eslint-disable-next-line no-restricted-exports
+export default EslintStack.Presets.browserTypescriptReact().ignores({ patterns: ['dist', 'test-results'] }).build();

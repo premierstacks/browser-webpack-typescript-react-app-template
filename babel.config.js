@@ -1,9 +1,4 @@
-import { createBabelStack } from '@premierstacks/babel-stack';
+import { BabelStack } from '@premierstacks/babel-stack';
 
-export default createBabelStack({
-  env: true,
-  react: true,
-  typescript: true,
-  stylex: true,
-  reactCompiler: true,
-});
+// eslint-disable-next-line no-restricted-exports
+export default BabelStack.Presets.typescriptReact().build();

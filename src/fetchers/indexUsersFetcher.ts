@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs } from 'react-router';
+import type { LoaderFunctionArgs } from 'react-router-dom';
 
 interface User {
   id: string;
@@ -9,7 +9,7 @@ interface User {
   website: string;
 }
 
-function assertUser(un: unknown): un is User[] {
+function assertUserArray(un: unknown): un is User[] {
   return Array.isArray(un);
 }
 
@@ -23,17 +23,17 @@ export async function indexUsersFetcher({ request }: LoaderFunctionArgs): IndexU
     signal: request.signal,
   }).then(async (response) => {
     if (response.status !== 200) {
-      throw new Error(response.statusText);
+      throw new Error('indexUsersFetcher: invalid status ' + response.status.toFixed() + ':' + response.statusText);
     }
 
     if (response.headers.get('Content-Type')?.startsWith('application/json') !== true) {
-      throw new Error(response.headers.get('Content-Type') ?? 'Unknown Content-Type');
+      throw new Error('indexUsersFetcher: invalid content-type ' + (response.headers.get('Content-Type') ?? 'undefined'));
     }
 
     const json = await response.json() as unknown;
 
-    if (!assertUser(json)) {
-      throw new Error('Invalid response format');
+    if (!assertUserArray(json)) {
+      throw new Error('indexUsersFetcher: invalid response structure');
     }
 
     return json;

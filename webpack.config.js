@@ -1,47 +1,18 @@
-import { applyWebpackPluginCopy, applyWebpackPluginHtml, createWebpackConfigBrowserTypescriptBabelReactApp, getNodeEnv, getWebpackMode } from '@premierstacks/webpack-stack';
-import { execSync } from 'child_process';
-import webpack from 'webpack';
+import { WebpackStack } from '@premierstacks/webpack-stack';
 
+// eslint-disable-next-line no-restricted-exports
 export default function (env, argv) {
-  const webpackMode = getWebpackMode(env, argv);
-  const nodeEnv = getNodeEnv(env, argv);
-  const appEnv = env.APP_ENV ?? process.env.APP_ENV ?? webpackMode;
-
-  const config = createWebpackConfigBrowserTypescriptBabelReactApp(env, argv);
-
-  config.devServer = config.devServer ?? {};
-  config.devServer.port = 3000;
-
-  config.entry = {
-    index: './src/index.ts',
-  };
-
-  config.plugins = config.plugins ?? [];
-  config.plugins.push(
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: nodeEnv,
-      WEBPACK_MODE: webpackMode,
-      APP_NAME: process.env.npm_package_name ?? 'app',
-      APP_VERSION: process.env.npm_package_version ?? execSync('git rev-parse HEAD').toString().trim() ?? 'latest',
-      APP_ENV: appEnv,
-      OTLP_API_KEY: env.OTLP_API_KEY ?? process.env.OTLP_API_KEY ?? null,
-    }),
-  );
-
-  config.plugins = config.plugins ?? [];
-  config.plugins.push(
-    new webpack.DefinePlugin({
-      global: 'globalThis',
-    }),
-  );
-
-  if (appEnv === 'playwright') {
-    config.devServer.client = config.devServer.client ?? {};
-    config.devServer.client.overlay = false;
-  }
-
-  applyWebpackPluginHtml(env, argv, config, { inject: true, template: './src/index.html', filename: 'index.html', chunks: ['index'], publicPath: '/' });
-  applyWebpackPluginCopy(env, argv, config, { patterns: [{ from: './public', to: '.' }] });
-
-  return config;
+  return WebpackStack.preset(env, argv, {
+    brotli: true,
+    gzip: true,
+    environment: true,
+    define: true,
+  }).entry({
+    index: ['./src/index.ts'],
+  }).html({
+    template: './src/index.html',
+    filename: 'index.html',
+  }).environment({
+    OTLP_API_KEY: env.OTLP_API_KEY ?? argv.otlpApiKey ?? process.env.OTLP_API_KEY ?? null,
+  }).copy().build();
 }

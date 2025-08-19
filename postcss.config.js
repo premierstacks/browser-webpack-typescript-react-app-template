@@ -1,6 +1,4 @@
-import { createPostcssConfigStylex } from '@premierstacks/postcss-stack';
+import { PostcssStack } from '@premierstacks/postcss-stack';
 
-export default createPostcssConfigStylex({
-  include: ['./src/**/*.{tsx,mts,ts,cts,jsx,mjs,js,cjs}', './node_modules/@premierstacks/material-design-expressive-react-aria-stack/src/**/*.{tsx,mts,ts,cts,jsx,mjs,js,cjs}'],
-  useCSSLayers: false,
-});
+// eslint-disable-next-line no-restricted-exports
+export default PostcssStack.Presets.base().build();

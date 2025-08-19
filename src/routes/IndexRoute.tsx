@@ -1,18 +1,17 @@
-import { ExpressiveContainerPadding, ExpressiveHeadingContext, ExpressiveHeadingHeadlineMedium, ExpressiveHeadingHeadlineSmall, ExpressivePaneGrid, ExpressiveSurface, ExpressiveSurfacePadding } from '@premierstacks/material-design-expressive-react-aria-stack';
 import { useEffect, type ReactElement } from 'react';
-import { useMeta } from '../lang/seo';
-import { useTrans } from '../lang/trans';
-import { useFetcher } from 'react-router';
+import { useFetcher } from 'react-router-dom';
+import { SuspenseValue } from '../components/SupsenseValue';
 import { INDEX_USERS_FETCHER, type IndexUsersFetcherInterface } from '../fetchers/indexUsersFetcher';
-import { SuspenseAwait } from '../components/promises/SuspenseAwait';
+import { useSeo } from '../lang/seo';
+import { useTrans } from '../lang/trans';
 
 export function IndexRoute(): ReactElement {
   const trans = useTrans();
 
-  useMeta({
-    title: trans.format('routes.index.title'),
-    keywords: trans.format('routes.index.keywords'),
-    description: trans.format('routes.index.description'),
+  useSeo({
+    title: trans.format('routes.index.seo.title'),
+    keywords: trans.format('routes.index.seo.keywords'),
+    description: trans.format('routes.index.seo.description'),
   });
 
   const { load, data } = useFetcher<Awaited<IndexUsersFetcherInterface>>({ key: INDEX_USERS_FETCHER });
@@ -22,40 +21,29 @@ export function IndexRoute(): ReactElement {
   }, [load]);
 
   return (
-    <ExpressiveContainerPadding>
-      <ExpressivePaneGrid>
-        <ExpressiveSurface>
-          <ExpressiveSurfacePadding>
-            <main>
-              <ExpressiveHeadingHeadlineMedium>
-                {trans.format('routes.index.h1')}
-              </ExpressiveHeadingHeadlineMedium>
-              <section>
-                <SuspenseAwait
-                  resolve={data}
-                  fallback="loading"
+    <main>
+      <h1>
+        {trans.format('routes.index.h1')}
+      </h1>
+      <section>
+        <SuspenseValue
+          resolve={data}
+        >
+          {(resolved) => {
+            return resolved.map((user) => {
+              return (
+                <article
+                  key={user.id}
                 >
-                  {(resolved) => {
-                    return resolved.map((user) => {
-                      return (
-                        <ExpressiveHeadingContext
-                          key={user.id}
-                        >
-                          <article>
-                            <ExpressiveHeadingHeadlineSmall>
-                              {user.name}
-                            </ExpressiveHeadingHeadlineSmall>
-                          </article>
-                        </ExpressiveHeadingContext>
-                      );
-                    });
-                  }}
-                </SuspenseAwait>
-              </section>
-            </main>
-          </ExpressiveSurfacePadding>
-        </ExpressiveSurface>
-      </ExpressivePaneGrid>
-    </ExpressiveContainerPadding>
+                  <h2>
+                    {user.name}
+                  </h2>
+                </article>
+              );
+            });
+          }}
+        </SuspenseValue>
+      </section>
+    </main>
   );
 }
