@@ -3,7 +3,9 @@
   "description": "premierstacks browser webpack typescript react app template",
   "keywords": [
     "tomchochola",
+    "tomaschochola",
     "Tomas Chochola",
+    "Tomáš Chochola",
     "premierstacks",
     "browser-webpack-typescript-react-app-template"
   ],
@@ -57,7 +59,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
-    "@playwright/test": "^1.54.2",
+    "@playwright/test": "^1.55.0",
     "@premierstacks/babel-stack": "github:premierstacks/babel-stack#main",
     "@premierstacks/eslint-stack": "github:premierstacks/eslint-stack#main",
     "@premierstacks/postcss-stack": "github:premierstacks/postcss-stack#main",
