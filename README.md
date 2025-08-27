@@ -1,6 +1,6 @@
-# [Browser Webpack TypeScript React App Template](https://github.com/premierstacks/browser-webpack-typescript-react-app-template) by [Tomáš Chochola](https://github.com/tomchochola)
+# [React SPA Template](https://github.com/premierstacks/react-spa-template) by [Tomáš Chochola](https://github.com/tomchochola)
 
-The Browser Webpack TypeScript React App Template offers a complete foundation for developing modern browser-based applications with TypeScript, React, and Webpack. Featuring pre-configured setups for React components, TypeScript, and asset optimization, this template streamlines your development workflow while ensuring clean and maintainable code. It’s designed to help developers start coding quickly with all the necessary tools integrated, including ESLint, Prettier, and Stylelint for code quality and consistency.
+The React SPA Template offers a complete foundation for developing modern browser-based applications with TypeScript, React, and Webpack. Featuring pre-configured setups for React components, TypeScript, and asset optimization, this template streamlines your development workflow while ensuring clean and maintainable code. It’s designed to help developers start coding quickly with all the necessary tools integrated, including ESLint, Prettier, and Stylelint for code quality and consistency.
 
 ## What is Premierstacks
 
